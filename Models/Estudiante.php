@@ -11,6 +11,8 @@
 		private $fecha;
 		private $con;
 
+		protected $table = 'estudiantes';
+
 		public function __construct()
 		{
 			$this->con = new Conexion();
@@ -28,7 +30,7 @@
 
 		public function listar()
 		{
-			$sql = "SELECT t1.*, t2.nombre as nombre_seccion FROM estudiantes t1 INNER JOIN secciones t2 ON t1.id_seccion = t2.id ORDER BY id DESC";
+			$sql = "SELECT estudiantes.*, secciones.nombre as nombre_seccion FROM estudiantes  INNER JOIN secciones  ON estudiantes.id_seccion = secciones.id ORDER BY id DESC";
 			$datos = $this->con->consultaRetorno($sql);
 			return $datos;
 		}

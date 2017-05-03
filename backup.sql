@@ -16,34 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `alumnos`
---
-
-DROP TABLE IF EXISTS `alumnos`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `alumnos` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(205) DEFAULT NULL,
-  `edad` int(11) DEFAULT NULL,
-  `promedio` double DEFAULT NULL,
-  `imagen` varchar(200) DEFAULT NULL,
-  `id_seccion` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `alumnos`
---
-
-LOCK TABLES `alumnos` WRITE;
-/*!40000 ALTER TABLE `alumnos` DISABLE KEYS */;
-INSERT INTO `alumnos` VALUES (1,'Agustin',21,57,'abc.png',1);
-/*!40000 ALTER TABLE `alumnos` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `estudiantes`
 --
 
@@ -53,6 +25,11 @@ DROP TABLE IF EXISTS `estudiantes`;
 CREATE TABLE `estudiantes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(80) DEFAULT NULL,
+  `edad` int(11) DEFAULT NULL,
+  `promedio` double DEFAULT NULL,
+  `imagen` varchar(200) DEFAULT NULL,
+  `id_seccion` int(11) DEFAULT NULL,
+  `fecha` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -63,8 +40,32 @@ CREATE TABLE `estudiantes` (
 
 LOCK TABLES `estudiantes` WRITE;
 /*!40000 ALTER TABLE `estudiantes` DISABLE KEYS */;
-INSERT INTO `estudiantes` VALUES (1,'Primera');
+INSERT INTO `estudiantes` VALUES (1,'Agustin',21,87,'',1,'2017-01-01 00:00:00');
 /*!40000 ALTER TABLE `estudiantes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `secciones`
+--
+
+DROP TABLE IF EXISTS `secciones`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `secciones` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(85) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `secciones`
+--
+
+LOCK TABLES `secciones` WRITE;
+/*!40000 ALTER TABLE `secciones` DISABLE KEYS */;
+INSERT INTO `secciones` VALUES (1,'Primera');
+/*!40000 ALTER TABLE `secciones` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -76,4 +77,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-05-02 23:11:51
+-- Dump completed on 2017-05-02 23:26:06
