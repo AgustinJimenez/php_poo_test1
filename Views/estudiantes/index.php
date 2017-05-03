@@ -17,7 +17,7 @@
 		    </tr>
 		  </thead>
 		  <tbody>
-		  	<?php while($row = mysqli_fetch_array($datos)){ ?>
+		  	<?php foreach ($datos as $key => $row): ?>
 		  	<tr>
 		  			<td><img class="imagen-avatar" src="<?php echo URL; ?>Views/template/images/avatars<?php echo $row['imagen']; ?>"></td>
 					<td><a href="<?php echo URL; ?>estudiantes/ver/<?php echo $row['id']; ?>"><?php echo $row['nombre']; ?></a></td>
@@ -28,7 +28,7 @@
 						<a class="btn btn-danger" href="<?php echo URL; ?>estudiantes/eliminar/<?php echo $row['id']; ?>">Eliminar</a>
 			    	</td>
 			</tr>
-			<?php } ?>
+			<?php endforeach; ?>
 		  </tbody>
 		</table> 
 	  </div>

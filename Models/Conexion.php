@@ -25,7 +25,11 @@
 		public function consultaRetorno($sql)
 		{
 			$datos = $this->con->query($sql);
-			return $datos;
+
+			while ( $tmp = mysqli_fetch_assoc($datos) ) 
+				$tmp_array[] = $tmp;
+			
+			return isset($tmp_array)?$tmp_array:null;
 		}
 	}
 

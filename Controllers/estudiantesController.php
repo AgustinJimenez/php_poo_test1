@@ -3,22 +3,27 @@
 	use Models\Estudiante as Estudiante;
 	use Models\Seccion as Seccion;
 	
-	class estudiantesController{
+	class estudiantesController
+	{
 
 		private $estudiante;
 		private $seccion;
 
-		public function __construct(){
+		public function __construct()
+		{
 			$this->estudiante = new Estudiante();
 			$this->seccion = new Seccion();
 		}
 
-		public function index(){
+		public function index()
+		{
 			$datos = $this->estudiante->listar();
+
 			return $datos;
 		}
 
-		public function agregar(){
+		public function agregar()
+		{
 			if(!$_POST){
 				$datos = $this->seccion->listar();
 				return $datos;
@@ -40,7 +45,8 @@
 			}
 		}
 
-		public function editar($id){
+		public function editar($id)
+		{
 			if(!$_POST){
 				$this->estudiante->set("id", $id);
 				$datos = $this->estudiante->view();
@@ -56,18 +62,21 @@
 			}
 		}
 
-		public function listarSecciones(){
+		public function listarSecciones()
+		{
 			$datos = $this->seccion->listar();
 			return $datos;
 		}
 
-		public function ver($id){
+		public function ver($id)
+		{
 			$this->estudiante->set("id",$id);
 			$datos = $this->estudiante->view();
 			return $datos;
 		}
 
-		public function eliminar($id){
+		public function eliminar($id)
+		{
 			$this->estudiante->set("id",$id);
 			$this->estudiante->delete();
 			header("Location: " . URL . "estudiantes");

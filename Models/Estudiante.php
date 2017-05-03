@@ -30,8 +30,12 @@
 
 		public function listar()
 		{
-			$sql = "SELECT estudiantes.*, secciones.nombre as nombre_seccion FROM estudiantes  INNER JOIN secciones  ON estudiantes.id_seccion = secciones.id ORDER BY id DESC";
+			$table = $this->table;
+
+			$sql = "SELECT {$table}.*, secciones.nombre as nombre_seccion FROM {$table}  INNER JOIN secciones  ON estudiantes.id_seccion = secciones.id ORDER BY id DESC";
+			
 			$datos = $this->con->consultaRetorno($sql);
+
 			return $datos;
 		}
 
