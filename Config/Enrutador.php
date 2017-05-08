@@ -32,15 +32,18 @@
 		public static function run(Request $request)
 		{
 			self::cargar_rutas_por_defecto();
-			$controlador = self::get_route_datas( $request->getControlador() )['controller'];
-			$metodo = self::get_route_datas( $request->getControlador() )['method'];
+			$array_url = $request->url_to_array();
+			$url_controller = self::url_controller($array_url);
+			$controlador = $url_controller?$url_controller[0]:"";
+			$metodo = $url_controller?$url_controller[1]:"";
+			$argumento = end($array_url);
 			$ruta_archivo_controlador = ROOT . "Controllers" . DS . $controlador .".php";
-			$argumento = $request->getArgumento();
-	
+
 			if(is_readable($ruta_archivo_controlador))
 			{
 				require_once $ruta_archivo_controlador;
 				$mostrar = "Controllers\\" . $controlador;
+			print_r($mostrar);
 				$controlador = new $mostrar;
 
 				print_r($controlador);
@@ -59,7 +62,21 @@
 				print "No se encontro la ruta";
 		}
 
-		public function cargar_rutas_por_defecto()
+		public static function url_controller($array_url = null)
+		{
+			if(!$array_url)
+				return null;
+			else
+			{
+				$routes = self::get_route_datas();
+				$index = array_shift($array_url);
+				$controller_method = isset($routes[$index])?$routes[$index]["uses"]:null;
+				$controller_method = explode("@", $controller_method);
+				return $controller_method;
+			}
+		}
+
+		public static function cargar_rutas_por_defecto()
 		{
 			self::set_route_datas([
 				'estudiantes' => 

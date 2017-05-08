@@ -13,6 +13,7 @@
 		{
 			$this->estudiante = new Estudiante();
 			$this->seccion = new Seccion();
+			print_r($this);
 		}
 
 		public function index()

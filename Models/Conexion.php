@@ -13,7 +13,8 @@
 
 		private $con;
 
-		public function __construct(){
+		public function __construct()
+		{
 			$this->con = new \mysqli($this->datos['host'], $this->datos['user'], $this->datos['pass'], $this->datos['db']);
 		}
 

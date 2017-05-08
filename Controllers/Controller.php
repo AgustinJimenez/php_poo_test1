@@ -3,7 +3,8 @@
 	abstract class Controller{
 		private $vista;
 
-		public function __construct(Request $request){
+		public function __construct(Request $request)
+		{
 			
 		}
 	}
