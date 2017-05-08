@@ -17,6 +17,7 @@
 
 		public function index()
 		{
+			print_r("here estuediantes index");
 			$datos = $this->estudiante->listar();
 
 			return $datos;

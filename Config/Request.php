@@ -9,28 +9,20 @@
 			$requested_url = $_SERVER[REQUEST_URI];
 			if($requested_url)
 			{
-				//$ruta = filter_input(INPUT_GET, 'url', FILTER_SANITIZE_URL);
-				//$ruta = explode("/", $ruta);
-				$ruta = explode("/", $requested_url);
-				unset($ruta[0]);//delete first element
-				$ruta = array_values($ruta);//reorder keys
-				//$ruta = array_filter($ruta);
-				if($ruta[0] == "index.php")
-					$this->controlador = "estudiantes";//index template 
+				$url_on_array = explode("/", $requested_url);
+				unset($url_on_array[0]);
+				$controlador = array_shift($url_on_array);
+				$metodo = array_shift($url_on_array);
+				$argumento = array_shift($url_on_array);
+
+				$this->controlador = $controlador;
+
+				$this->metodo = $metodo;
+
+				if(is_numeric($argumento))
+					$this->argumento = is_numeric($argumento)?(int)$argumento:null;
 				else
-					$this->controlador = strtolower(array_shift($ruta));//obtiene alumnos de /alumnos/create
-
-				$this->metodo = strtolower(array_shift($ruta));//obtiene create de /alumnos/create
-
-				if(!$this->metodo)//si no hay mentodo que traiga index
-					$this->metodo = "index";
-					
-				$this->argumento = $ruta;
-			}
-			else
-			{
-				$this->controlador = "estudiantes";
-				$this->metodo = "index";
+					return null;
 			}
 		}
 		public function getControlador()

@@ -22,6 +22,7 @@
 				$method = array_shift($controller_attr);
 				self::$direccion_de_rutas[$argument]['controller'] = $controller;
 				self::$direccion_de_rutas[$argument]['method'] = $method;
+
 				return self::$direccion_de_rutas[$argument];
 			}
 			else
@@ -35,11 +36,14 @@
 			$metodo = self::get_route_datas( $request->getControlador() )['method'];
 			$ruta_archivo_controlador = ROOT . "Controllers" . DS . $controlador .".php";
 			$argumento = $request->getArgumento();
+	
 			if(is_readable($ruta_archivo_controlador))
 			{
 				require_once $ruta_archivo_controlador;
 				$mostrar = "Controllers\\" . $controlador;
 				$controlador = new $mostrar;
+
+				print_r($controlador);
 				if(isset($argumento))
 					$datos = call_user_func_array(array($controlador, $metodo), $argumento);
 				else
@@ -48,6 +52,7 @@
 
 			//cargar vista
 			$ruta_archivo_controlador = ROOT . "Views" . DS . $request->getControlador() . DS . $request->getMetodo() . ".php";
+
 			if (is_readable($ruta_archivo_controlador)) 
 				require_once $ruta_archivo_controlador;
 			else
@@ -57,27 +62,27 @@
 		public function cargar_rutas_por_defecto()
 		{
 			self::set_route_datas([
-				'alumnos' => 
+				'estudiantes' => 
 				[
 					"model" => "Estudiante",
 					'uses' => 'estudiantesController@index'
 				],
-				'alumnos/create' => 
+				'estudiantes/create' => 
 				[
 					"model" => "Estudiante",
 					'uses' => 'estudiantesController@agregar'
 				],
-				'alumnos/edit' => 
+				'estudiantes/edit' => 
 				[
 					"model" => "Estudiante",
 					'uses' => 'estudiantesController@editar'
 				],
-				'alumnos/show' => 
+				'estudiantes/show' => 
 				[
 					"model" => "Estudiante",
 					'uses' => 'estudiantesController@mostrar'
 				],
-				'alumnos/delete' => 
+				'estudiantes/delete' => 
 				[
 					"model" => "Estudiante",
 					'uses' => 'estudiantesController@eliminar'
