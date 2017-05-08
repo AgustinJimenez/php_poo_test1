@@ -11,8 +11,7 @@
 	
 	define('DS', DIRECTORY_SEPARATOR);
 	define('ROOT', realpath(dirname(__FILE__)).DS);
-	define('URL', "http://localhost/php_poo_test1");
-	//define('URL', (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]" . "PorientadaO/proyecto/");
+	define('URL', (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]/");
 	require_once "Config/Autoload.php";
 	Config\Autoload::run();
 

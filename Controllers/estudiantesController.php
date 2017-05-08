@@ -13,19 +13,17 @@
 		{
 			$this->estudiante = new Estudiante();
 			$this->seccion = new Seccion();
-			print_r($this);
 		}
 
 		public function index()
 		{
-			print_r("here estuediantes index");
 			$datos = $this->estudiante->listar();
-
 			return $datos;
 		}
 
 		public function agregar()
 		{
+			print_r( 'here create' );
 			if(!$_POST){
 				$datos = $this->seccion->listar();
 				return $datos;
