@@ -10,6 +10,13 @@
 		<title>Administración de estudiantes | Codigo Facilito</title>
 		<link rel="stylesheet" href="<?php echo URL; ?>Views/template/css/bootstrap.css">
 		<link rel="stylesheet" href="<?php echo URL; ?>Views/template/css/general.css">
+		<style type="text/css">
+			body
+			{
+				background-color: black;
+				color:white;
+			}
+		</style>
 	</head>
 	<body>
 		<nav class="navbar navbar-inverse navbar-fixed-top">

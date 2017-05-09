@@ -11,11 +11,11 @@
 			self::cargar_rutas_por_defecto();
 			$array_url = $request->convert_url_to_array();
 			$controller_and_his_method = self::get_controller_and_method( $request->get_url() );
-			$controlador = $controller_and_his_method['controller'];
-			$metodo = $controller_and_his_method['method'];
-			$argumento = $request->get_argument();
-			$ruta_archivo_controlador = ROOT . "Controllers" . DS . $controlador .".php";
-			self::call_controller($ruta_archivo_controlador, $controlador, $metodo, $argumento);
+			$controller_name = $controller_and_his_method['controller'];
+			$method = $controller_and_his_method['method'];
+			$argument = $request->get_argument();
+			$controller_path = ROOT . "Controllers" . DS . $controller_name .".php";
+			self::call_controller($controller_path, $controller_name, $method, $argument);
 			$view_path = self::view('template');
 			self::call_view($view_path);
 		}
@@ -85,7 +85,6 @@
 			$controlador = $controller_and_method?$controller_and_method[0]:"";
 			$metodo = $controller_and_method?$controller_and_method[1]:"";
 			return ['controller' => $controlador, 'method' => $metodo];
-			
 		}
 
 		public static function cargar_rutas_por_defecto()
